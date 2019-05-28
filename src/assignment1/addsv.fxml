@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<Pane fx:controller="assignment1.Studentsv" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <TextField fx:id="txtName" layoutX="47.0" layoutY="51.0" promptText="Name">
+        </TextField>
+        <TextField fx:id="txtAge" layoutX="226.0" layoutY="51.0" promptText="Age">
+        </TextField>
+        <TextField fx:id="txtMark" layoutX="400.0" layoutY="51.0" promptText="Mark">
+        </TextField>
+        <Button onAction="#themSV" layoutX="260.0" layoutY="165.0" mnemonicParsing="false" text="Add SV">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Button>
+        <Hyperlink onAction="#toListPane" layoutX="479.0" layoutY="318.0" text="Go to List &gt;&gt;"/>
+    </children>
+</Pane>
