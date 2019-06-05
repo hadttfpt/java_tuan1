@@ -8,4 +8,8 @@ Viết DAO class để quản lý việc truy xuất dữ liệu liên quan đ�
  Thêm 1 method để tìm số đt của 1 user nào đó
 Tạo signleton instance cho class này
      */
+    public static void main(String[] args){
+        Dao d = new Dao();
+        System.out.println(d.getUser(1));
+    }
 }

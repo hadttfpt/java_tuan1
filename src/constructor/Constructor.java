@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class Constructor {
     private static final String Driver = "com.mysql.jdbc.Driver";
-    private static final String DB_Url ="jdbc:mysql://localhost:3306/user";
+    private static final String DB_Url ="jdbc:mysql://localhost:3306/phone";
     private static final String DB_User = "root";
 
     public Connection conn;
