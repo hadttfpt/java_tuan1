@@ -2,10 +2,19 @@ package assignment7;
 
 import constructor.Constructor;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
-public class Dao implements phoneInterface {
+public class Dao implements PhoneInterface {
+
+    private static Dao instance;
+    private Dao(){}
+    public static Dao getInstance(){
+        if(instance == null){
+            instance = new Dao();
+        }return  instance;
+    }
     @Override
-    public boolean create(phone p) {
+    public boolean create(Phone p) {
         Constructor cn = Constructor.getInstance();
         String sql = "Insert into phone (id,user_id,telephone,status) values('"+p.getId()
                 +"','"+p.getUser_id()+"','"+p.getTelephone()+"','"+p.getStatus()+"')";
@@ -20,8 +29,9 @@ public class Dao implements phoneInterface {
     }
 
     @Override
-    public boolean update(phone p) {
-        String sql = "update phone set id = "+p.getId();
+    public boolean update(Phone p) {
+        String sql = "update phone set user_id = '"+p.getUser_id()+"' ,telephone= '"+p.getTelephone()
+                +"',status= '"+p.getStatus()+"' where id = "+p.getId() ;
         Constructor cn = Constructor.getInstance();
         try{
             if(cn.updateQuery(sql)>0){
@@ -34,7 +44,7 @@ public class Dao implements phoneInterface {
     }
 
     @Override
-    public boolean delete(phone p) {
+    public boolean delete(Phone p) {
         String sql ="Delete from phone where id = "+p.getId();
         Constructor cn = Constructor.getInstance();
         try{
@@ -47,36 +57,18 @@ public class Dao implements phoneInterface {
         return false;
     }
 
-    public phone getUser(Integer id){
+    public ArrayList<Phone> getphone(Integer id){
         String sql = "Select * from phone where id = "+id;
         Constructor cn = Constructor.getInstance();
+        ArrayList<Phone> list= new ArrayList<>();
         try{
             ResultSet rs = cn.getQuery(sql);
             while (rs.next()){
-                return new phone(rs.getInt("id"),rs.getInt("user_id"),
-                        rs.getInt("telephone"),rs.getString("status"));
+                list.add(new Phone( rs.getInt("id"),rs.getInt("user_id"),
+                        rs.getInt("telephone"),rs.getString("status")));
             }
         }catch (Exception e){
 
-        }return null;
+        }return list;
     }
-
-//    public void search(int id){
-//        String sql = "Select * from phone where id = "+id;
-//        Constructor cn = Constructor.getInstance();
-//        try{
-//            ResultSet rs = cn.getQuery(sql);
-//            if(cn.updateQuery(sql)>0){
-//               while (rs.next()){
-//                   System.out.println("ID "+rs.getInt("id"));
-//                   System.out.println("User_id "+rs.getInt("user_id"));
-//                   System.out.println("User "+rs.getString("user"));
-//                   System.out.println("Telephone "+rs.getInt("telephone"));
-//                   System.out.println("Status "+rs.getString("status"));
-//               }
-//            }
-//        }catch(Exception e){
-//
-//        }
-//    }
 }

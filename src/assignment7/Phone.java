@@ -1,12 +1,12 @@
 package assignment7;
 
-public class phone {
+public class Phone {
     public Integer id;
     public Integer user_id;
     public Integer telephone;
     public String status;
 
-    public phone(Integer id, Integer user_id, Integer telephone, String status) {
+    public Phone(Integer id, Integer user_id, Integer telephone, String status) {
         this.id = id;
         this.user_id = user_id;
         this.telephone = telephone;

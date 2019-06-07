@@ -6,7 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
+import assignment7.Dao;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,15 +28,12 @@ public class Edit implements Initializable {
         String username = txtUsername.getText();
         String email = txtEmail.getText();
         String password = txtPassword.getText();
-        String sql = "Insert into user (username,email,password) " +
-                " VALUES('"+username+"','"+email+"','"+password+"')";
-        try{
-            Constructor cn = Constructor.getInstance();
-            int number = cn.updateQuery(sql);
-            if(number>0){
-                goToList();
-            }
-        }catch (Exception e){
+        try {
+            User us = new User(null,username,email,password);
+            UserDao ud = UserDao.getInstance();
+            ud.create(us);
+        }
+        catch (Exception e){
 
         }
     }

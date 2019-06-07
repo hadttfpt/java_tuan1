@@ -14,15 +14,12 @@ public class Register {
         String email = txtEmail.getText();
         String password = txtPassword.getText();
 
-        String sql = "Insert into user (username,email,password) " +
-                " VALUES('"+username+"','"+email+"','"+password+"')";
         try {
-            Constructor cn = Constructor.getInstance();
-            int number = cn.updateQuery(sql);
-            if(number>0){
-                goToList();
-            }
-        }catch (Exception e){
+            User user = new User(null,username,email,password);
+            UserDao ud = UserDao.getInstance();
+            ud.create(user);
+        }
+        catch (Exception e){
 
         }
 
